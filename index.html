@@ -11,48 +11,57 @@
       --card:#0f1726;
       --text:#e8f1ff;
       --muted:#9db3d9;
-      --accent:#6ea8ff;
-      --accent-2:#8bffd6;
+      --accent:#00d4ff;
+      --accent-2:#00ff88;
+      --accent-3:#ff006e;
+      --accent-4:#8338ec;
       --hot:#a77bff;
-      --glow: 0 12px 36px rgba(110,168,255,.22), inset 0 0 40px rgba(139,255,214,.08);
+      --glow: 0 12px 36px rgba(0,212,255,.35), inset 0 0 40px rgba(0,255,136,.12);
+      --glow-hover: 0 20px 60px rgba(0,212,255,.45), inset 0 0 60px rgba(0,255,136,.18);
     }
     *{box-sizing:border-box}
-    html,body{margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text); background: radial-gradient(1200px 800px at 120% -10%, rgba(139,255,214,.08), transparent 60%), radial-gradient(900px 600px at -20% 120%, rgba(110,168,255,.10), transparent 60%), linear-gradient(180deg, var(--bg), var(--bg2));}
-
+    html,body{margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text); background: radial-gradient(1200px 800px at 120% -10%, rgba(0,255,136,.12), transparent 60%), radial-gradient(900px 600px at -20% 120%, rgba(0,212,255,.15), transparent 60%), linear-gradient(180deg, var(--bg), var(--bg2));}
     /* animated 3D-ish background */
     .bg-anim{position:fixed; inset:0; z-index:-1; perspective:800px; overflow:hidden}
-    .orb{position:absolute; width:520px; height:520px; border-radius:50%; filter:blur(40px); opacity:.25; transform-style:preserve-3d; animation: float 18s ease-in-out infinite alternate}
-    .orb.one{left:-160px; top:-120px; background:radial-gradient(circle at 30% 30%, #8bffd6, transparent 60%), radial-gradient(circle at 70% 70%, #6ea8ff, transparent 60%)}
-    .orb.two{right:-140px; bottom:-160px; background:radial-gradient(circle at 30% 30%, #a77bff, transparent 60%), radial-gradient(circle at 70% 70%, #6ea8ff, transparent 60%); animation-duration:22s}
+    .orb{position:absolute; width:520px; height:520px; border-radius:50%; filter:blur(40px); opacity:.3; transform-style:preserve-3d; animation: float 18s ease-in-out infinite alternate}
+    .orb.one{left:-160px; top:-120px; background:radial-gradient(circle at 30% 30%, #00ff88, transparent 60%), radial-gradient(circle at 70% 70%, #00d4ff, transparent 60%)}
+    .orb.two{right:-140px; bottom:-160px; background:radial-gradient(circle at 30% 30%, #8338ec, transparent 60%), radial-gradient(circle at 70% 70%, #ff006e, transparent 60%); animation-duration:22s}
     @keyframes float { from{ transform:translateZ(-60px) rotateX(8deg) translateY(-10px)} to{ transform:translateZ(60px) rotateX(-6deg) translateY(10px)} }
-
-    header{position:sticky; top:0; backdrop-filter: blur(12px); background:rgba(8,12,20,.55); border-bottom:1px solid rgba(255,255,255,.06)}
+    header{position:sticky; top:0; backdrop-filter: blur(12px); background:rgba(8,12,20,.65); border-bottom:1px solid rgba(0,255,136,.15); z-index:100}
     nav{max-width:1100px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px}
     .nav-links{display:flex; gap:16px; list-style:none; margin:0; padding:0}
-    .nav-links a{color:var(--text); padding:8px 12px; border-radius:10px}
-    .nav-links a:hover{background:rgba(255,255,255,.06)}
-
+    .nav-links a{color:var(--text); padding:8px 12px; border-radius:10px; transition:all 0.3s ease}
+    .nav-links a:hover{background:linear-gradient(135deg, rgba(0,212,255,.15), rgba(0,255,136,.15)); transform:translateY(-2px)}
     .container{max-width:1100px; margin:auto}
     .hero{min-height:72vh; display:grid; place-items:center; padding:80px 20px}
     .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:34px; align-items:center}
-    .btn{padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12)}
-    .btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#06111e; box-shadow: var(--glow)}
+    .btn{padding:12px 20px; border-radius:12px; border:1px solid rgba(255,255,255,.12); transition:all 0.4s ease; text-decoration:none; display:inline-block; font-weight:600}
+    .btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#06111e; box-shadow: var(--glow); animation: pulse-glow 3s ease-in-out infinite}
+    .btn-primary:hover{box-shadow: var(--glow-hover); transform:translateY(-4px) scale(1.05)}
     .btn-secondary{background:rgba(255,255,255,.06); color:var(--text)}
-
-    .profile-card{background:linear-gradient(180deg, rgba(139,255,214,.08), rgba(110,168,255,.08)); border:1px solid rgba(255,255,255,.12); border-radius:18px; padding:18px; box-shadow: var(--glow)}
+    .btn-secondary:hover{background:linear-gradient(135deg, rgba(131,56,236,.2), rgba(255,0,110,.2)); transform:translateY(-2px)}
+    @keyframes pulse-glow { 0%, 100% { box-shadow: var(--glow); } 50% { box-shadow: var(--glow-hover); } }
+    .profile-card{background:linear-gradient(180deg, rgba(0,255,136,.12), rgba(0,212,255,.12)); border:1px solid rgba(0,255,136,.25); border-radius:18px; padding:18px; box-shadow: var(--glow)}
     .profile-3d{position:relative; aspect-ratio:1; border-radius:14px; overflow:hidden}
     .profile-3d img{width:100%; height:100%; object-fit:cover}
-    .float-badge{position:absolute; top:14px; right:14px; background:rgba(0,0,0,.45); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.15); padding:6px 10px; border-radius:999px}
-
+    .float-badge{position:absolute; top:14px; right:14px; background:rgba(0,0,0,.55); backdrop-filter:blur(8px); border:1px solid rgba(0,255,136,.3); padding:6px 10px; border-radius:999px; animation: badge-float 4s ease-in-out infinite}
+    @keyframes badge-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
     section{padding:56px 20px}
-    section h2{margin:0 0 14px}
-    .grid{display:grid; gap:18px; grid-template-columns:repeat(3, 1fr)}
-    .card{background:linear-gradient(180deg, rgba(139,255,214,.06), rgba(110,168,255,.06)); border:1px solid rgba(255,255,255,.12); border-radius:16px; overflow:hidden; box-shadow: var(--glow)}
-    .card img{width:100%; height:180px; object-fit:cover}
-    .card .body{padding:14px}
-    .tags{display:flex; gap:8px; flex-wrap:wrap}
-    .tag{font-size:12px; padding:6px 10px; border-radius:999px; color:#051020; background:linear-gradient(135deg, var(--accent), var(--accent-2))}
-
+    section h2{margin:0 0 24px; font-size:2.2em; background:linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text}
+    .projects-section{background:linear-gradient(180deg, rgba(0,212,255,.05), rgba(0,255,136,.05)); border-top:2px solid rgba(0,255,136,.2); border-bottom:2px solid rgba(0,212,255,.2); margin:40px 0; padding:70px 20px}
+    .projects-header{text-align:center; margin-bottom:50px}
+    .projects-header h2{font-size:3em; margin-bottom:16px}
+    .projects-header p{color:var(--muted); font-size:1.2em; max-width:700px; margin:0 auto}
+    .grid{display:grid; gap:24px; grid-template-columns:repeat(3, 1fr)}
+    .card{background:linear-gradient(180deg, rgba(0,255,136,.08), rgba(0,212,255,.08)); border:1px solid rgba(0,255,136,.2); border-radius:16px; overflow:hidden; box-shadow: var(--glow); transition:all 0.4s ease; cursor:pointer}
+    .card:hover{transform:translateY(-12px); box-shadow: var(--glow-hover); border-color:rgba(0,255,136,.5)}
+    .card:hover img{transform:scale(1.1)}
+    .card img{width:100%; height:200px; object-fit:cover; transition:transform 0.4s ease}
+    .card .body{padding:18px}
+    .card h3{margin:0 0 12px; font-size:1.3em; background:linear-gradient(135deg, var(--accent-2), var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text}
+    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+    .tag{font-size:12px; padding:6px 12px; border-radius:999px; color:#051020; background:linear-gradient(135deg, var(--accent), var(--accent-2)); font-weight:600; transition:all 0.3s ease}
+    .tag:hover{transform:scale(1.1); box-shadow:0 4px 12px rgba(0,255,136,.4)}
     @media (max-width:900px){ .hero-grid{grid-template-columns:1fr} .grid{grid-template-columns:1fr} }
   </style>
 </head>
@@ -61,7 +70,6 @@
     <div class="orb one"></div>
     <div class="orb two"></div>
   </div>
-
   <header>
     <nav>
       <strong>Aryan Saini</strong>
@@ -73,7 +81,6 @@
       </ul>
     </nav>
   </header>
-
   <section class="hero">
     <div class="container hero-grid">
       <div>
@@ -86,53 +93,53 @@
       </div>
       <div class="profile-card">
         <div class="profile-3d">
-          <img alt="AI-stylized cybersecurity portrait" src="https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&auto=format&fit=crop&w=1000" />
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&auto=format&fit=crop&w=800" alt="AI-stylized cybersecurity portrait" />
           <span class="float-badge">Security + ML</span>
         </div>
       </div>
     </div>
   </section>
-
-  <section id="profile" class="container">
+  <section class="container" id="profile">
     <h2>Profile Summary</h2>
     <p>
       Cybersecurity engineer passionate about building resilient, measurable defenses. I design threat‑informed controls, automate detection with ML, and turn telemetry into decisions. Strengths include network security, vulnerability assessment, adversary emulation, feature engineering, and MLOps for security data. I value clear documentation, reproducible pipelines, and collaborative incident response.
     </p>
   </section>
-
-  <section id="projects" class="container">
-    <h2>Projects</h2>
-    <div class="grid">
-      <article class="card" data-cat="security">
-        <img alt="Vulnerability assessment" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&auto=format&fit=crop&w=1200" />
-        <div class="body">
-          <h3>Vulnerability Assessment Toolkit</h3>
-          <p>OpenVAS, Nmap, and Metasploit automation for repeatable network assessments and reporting.</p>
-          <div class="tags"><span class="tag">Kali</span><span class="tag">OpenVAS</span><span class="tag">Nmap</span></div>
-        </div>
-      </article>
-
-      <article class="card" data-cat="ml">
-        <img alt="Neural networks research" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&auto=format&fit=crop&w=1200" />
-        <div class="body">
-          <h3>Malware Classification with Deep Learning</h3>
-          <p>Built CNN and gradient boosting baselines to classify malware families from static features.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">Security ML</span></div>
-        </div>
-      </article>
-
-      <article class="card" data-cat="security">
-        <img alt="IoT security" src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&auto=format&fit=crop&w=1200" />
-        <div class="body">
-          <h3>IoT Threat Hunting Lab</h3>
-          <p>Deployed lab with MQTT honeypots and alerting to study lateral movement across devices.</p>
-          <div class="tags"><span class="tag">IoT</span><span class="tag">Detection</span><span class="tag">Honeypot</span></div>
-        </div>
-      </article>
+  <section class="projects-section" id="projects">
+    <div class="container">
+      <div class="projects-header">
+        <h2>Projects</h2>
+        <p>Explore my cybersecurity and machine learning initiatives that showcase innovative solutions and cutting-edge techniques</p>
+      </div>
+      <div class="grid">
+        <article class="card" data-cat="security">
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&auto=format&fit=crop&w=1200" alt="Vulnerability assessment dashboard" />
+          <div class="body">
+            <h3>Vulnerability Assessment Toolkit</h3>
+            <p>OpenVAS, Nmap, and Metasploit automation for repeatable network assessments and reporting.</p>
+            <div class="tags"><span class="tag">Kali</span><span class="tag">OpenVAS</span><span class="tag">Nmap</span></div>
+          </div>
+        </article>
+        <article class="card" data-cat="ml">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&auto=format&fit=crop&w=1200" alt="AI neural network visualization" />
+          <div class="body">
+            <h3>Malware Classification with Deep Learning</h3>
+            <p>Built CNN and gradient boosting baselines to classify malware families from static features.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">Security ML</span></div>
+          </div>
+        </article>
+        <article class="card" data-cat="security">
+          <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&auto=format&fit=crop&w=1200" alt="IoT network security monitoring" />
+          <div class="body">
+            <h3>IoT Threat Hunting Lab</h3>
+            <p>Deployed lab with MQTT honeypots and alerting to study lateral movement across devices.</p>
+            <div class="tags"><span class="tag">IoT</span><span class="tag">Detection</span><span class="tag">Honeypot</span></div>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
-
-  <section id="education" class="container">
+  <section class="container" id="education">
     <h2>Education</h2>
     <ul>
       <li>Bachelor of Technology in Computer Science and Engineering</li>
@@ -140,8 +147,7 @@
       <li>Relevant coursework: Network Security, Cryptography, Threat Modeling, Data Mining, Deep Learning</li>
     </ul>
   </section>
-
-  <section id="contact" class="container">
+  <section class="container" id="contact">
     <h2>Contact</h2>
     <p>Email: aryansaini@example.com • GitHub: github.com/aryansaini24 • Location: India</p>
   </section>
