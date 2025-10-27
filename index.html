@@ -1,260 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aryan Saini - Cybersecurity Engineer Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aryan Saini - Cybersecurity Engineer Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root{ --bg:#0b0f17; --bg-soft:#0f1522; --card:#121a2b; --text:#e6f0ff; --muted:#9db3d9; --accent:#5aa0ff; --accent-2:#7bffdf; --glow:0 0 30px rgba(90,160,255,.35); }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:radial-gradient(1200px 800px at 120% -10%, rgba(123,255,223,.08), transparent 60%), radial-gradient(900px 600px at -20% 120%, rgba(90,160,255,.08), transparent 60%), var(--bg); color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
+    a{color:var(--accent); text-decoration:none}
+    header{position:sticky; top:0; z-index:50; background:rgba(11,15,23,.7); backdrop-filter: blur(10px); border-bottom:1px solid rgba(255,255,255,.06)}
+    nav{max-width:1100px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px}
+    .logo{display:flex; align-items:center; gap:10px}
+    .logo img{width:40px; height:40px; border-radius:50%; box-shadow: var(--glow)}
+    .nav-links{display:flex; gap:18px; list-style:none; padding:0; margin:0}
+    .nav-links a{padding:8px 12px; border-radius:10px; color:var(--text)}
+    .nav-links a:hover{background:rgba(255,255,255,.06)}
+    .theme-toggle{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#051020; border:none; padding:10px 14px; border-radius:12px; cursor:pointer; box-shadow:0 8px 20px rgba(90,160,255,.25)}
+
+    .hero{min-height:78vh; display:grid; place-items:center; padding:80px 20px}
+    .container{max-width:1100px; margin:auto}
+    .hero-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:34px; align-items:center}
+    .hero h1{font-size:48px; margin:0 0 10px}
+    .hero p.lead{color:var(--muted); margin:0 0 24px}
+    .hero-buttons{display:flex; gap:14px}
+    .btn{padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12)}
+    .btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#06111e}
+    .btn-secondary{background:rgba(255,255,255,.06); color:var(--text)}
+    .profile-card{background:linear-gradient(180deg, rgba(123,255,223,.06), rgba(90,160,255,.06)); border:1px solid rgba(255,255,255,.12); border-radius:18px; padding:18px; box-shadow: var(--glow)}
+    .profile-3d{position:relative; aspect-ratio:1; border-radius:14px; overflow:hidden}
+    .profile-3d img{width:100%; height:100%; object-fit:cover}
+    .float-badge{position:absolute; top:14px; right:14px; background:rgba(0,0,0,.45); backdrop-filter: blur(8px); border:1px solid rgba(255,255,255,.15); padding:6px 10px; border-radius:999px}
+
+    section h2{margin:0 0 14px}
+    .about{padding:60px 20px}
+    .about p{color:var(--muted)}
+
+    .skills{padding:60px 20px}
+    .skills-grid{display:grid; grid-template-columns: repeat(3,1fr); gap:16px}
+    .skill-card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:16px}
+    .skill-bar{height:8px; background:rgba(255,255,255,.08); border-radius:999px; overflow:hidden}
+    .skill-progress{height:8px; width:0; background:linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow: var(--glow); animation: load 1.2s forwards}
+    @keyframes load{to{width:var(--w)}}
+
+    .projects{padding:60px 20px}
+    .filters{display:flex; gap:10px; margin-bottom:16px}
+    .filter-btn{background:rgba(255,255,255,.06); color:var(--text); border:1px solid rgba(255,255,255,.1); padding:8px 12px; border-radius:10px; cursor:pointer}
+    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
+    .card{background:linear-gradient(180deg, rgba(123,255,223,.06), rgba(90,160,255,.06)); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:16px; transform: perspective(900px) rotateX(0) rotateY(0); transition: transform .2s ease, box-shadow .2s ease}
+    .card:hover{transform: perspective(900px) rotateX(4deg) rotateY(-6deg); box-shadow: 0 30px 80px rgba(0,0,0,.35)}
+    .card img{width:100%; height:170px; object-fit:cover; border-radius:12px; margin-bottom:12px}
+    .tags{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.1); padding:4px 8px; border-radius:999px; font-size:12px; color:var(--muted)}
+
+    .contact{padding:60px 20px}
+    .contact-links{display:flex; gap:14px; flex-wrap:wrap}
+
+    footer{padding:30px 20px; border-top:1px solid rgba(255,255,255,.06); color:var(--muted)}
+
+    @media (max-width:900px){ .hero-grid{grid-template-columns: 1fr} .grid{grid-template-columns: 1fr} .skills-grid{grid-template-columns: 1fr 1fr} }
+  </style>
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <nav>
-            <div class="logo">
-                <h2>Aryan Saini</h2>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="theme-toggle">🌙 Dark Mode</button>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <div class="logo">
+        <img alt="Profile avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=512&q=80&auto=format&fit=crop" />
+        <h2>Aryan Saini</h2>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+    </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Aryan Saini</h1>
-            <p>Cybersecurity Engineer | Ethical Hacker | Machine Learning Enthusiast</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Get in Touch</a>
-                <a href="https://github.com/aryansaini24" target="_blank" class="btn btn-secondary">View GitHub</a>
-            </div>
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>Cybersecurity Engineer</h1>
+        <p class="lead">Ethical Hacker | Network Security | Machine Learning for Security</p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="#contact">Get in Touch</a>
+          <a class="btn btn-secondary" href="https://github.com/aryansaini24" target="_blank">View GitHub</a>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <p>B.Tech in Computer Science from Vaish College of Engineering, Rohtak (CGPA: 7.5, June 2025)</p>
-            <p>Targeting Cyber security engineer roles with a scope of improving knowledge and career growth. Expert in Kali Linux, Metasploit, Nmap, Wireshark, Burpsuite, and OpenVas with a strong background in vulnerability assessment.</p>
-            <p>Demonstrated ability to manage and deliver projects efficiently, from initial planning and design to final deployment and maintenance. Committed to staying updated with the latest industry trends and technologies.</p>
+      </div>
+      <div class="profile-card">
+        <div class="profile-3d">
+          <img alt="AI generated portrait" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=800&q=80&auto=format&fit=crop" />
+          <span class="float-badge">Available for roles</span>
         </div>
-    </section>
-
-    <!-- Skills Section with Animated Charts -->
-    <section id="skills" class="skills-section">
-        <div class="container">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card" data-category="security">
-                    <h3>Cybersecurity Tools</h3>
-                    <p>Kali Linux, Metasploit, Nmap</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="--skill-level: 90%"></div>
-                    </div>
-                </div>
-                <div class="skill-card" data-category="security">
-                    <h3>Network Analysis</h3>
-                    <p>Wireshark, Burpsuite, OpenVas</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="--skill-level: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-card" data-category="programming">
-                    <h3>Programming Languages</h3>
-                    <p>Python, Java, C, C++</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="--skill-level: 80%"></div>
-                    </div>
-                </div>
-                <div class="skill-card" data-category="web">
-                    <h3>Web Development</h3>
-                    <p>HTML, CSS, JavaScript</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="--skill-level: 75%"></div>
-                    </div>
-                </div>
-                <div class="skill-card" data-category="tools">
-                    <h3>Development Tools</h3>
-                    <p>VS Code, PyCharm, Eclipse, Git</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="--skill-level: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-card" data-category="cloud">
-                    <h3>Cloud & Networking</h3>
-                    <p>AWS, Linux, CCNA, Gen AI</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="--skill-level: 70%"></div>
-                    </div>
-                </div>
-                <div class="skill-card" data-category="ai">
-                    <h3>Machine Learning</h3>
-                    <p>Python, MATLAB, Neural Networks</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="--skill-level: 75%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section with Filterable Grid -->
-    <section id="projects" class="projects-section">
-        <div class="container">
-            <h2>Featured Projects</h2>
-            
-            <!-- Project Filters -->
-            <div class="project-filters">
-                <button class="filter-btn active" data-category="all">All Projects</button>
-                <button class="filter-btn" data-category="security">Security</button>
-                <button class="filter-btn" data-category="ml">Machine Learning</button>
-                <button class="filter-btn" data-category="web">Web Development</button>
-            </div>
-            
-            <!-- Projects Grid -->
-            <div class="projects-grid">
-                <!-- Project 1: Anomaly Detection -->
-                <div class="project-card" data-category="ml"
-                     data-description="Developed a machine learning-based anomaly detection system to identify fraudulent transactions in real-time, significantly reducing financial losses. Architect, deploy, and manage advanced anomaly detection systems, leveraging machine learning and statistical techniques."
-                     data-technologies="Python, MATLAB, AWS, Machine Learning"
-                     data-github="#"
-                     data-demo="#">
-                    <div class="project-content">
-                        <h3>Anomaly Detection Tools</h3>
-                        <p>ML-based system to identify fraudulent transactions in real-time using advanced algorithms and statistical techniques.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">MATLAB</span>
-                            <span class="tag">AWS</span>
-                            <span class="tag">ML</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 2: Web Application Firewall -->
-                <div class="project-card" data-category="security"
-                     data-description="A strong and robust web application firewall allowing users to implement a scalable WAF solution to provide real-time protection against a wide range of web threats, including SQL injection, Brute-force, Html Injection. Architect, develop, and deploy a high-performance WAF leveraging advanced machine learning techniques."
-                     data-technologies="Python, Machine Learning, Web Security"
-                     data-github="#"
-                     data-demo="#">
-                    <div class="project-content">
-                        <h3>Web Application Firewall</h3>
-                        <p>High-performance WAF with ML-based threat detection providing real-time protection against SQL injection, brute-force, and HTML injection attacks.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">ML</span>
-                            <span class="tag">Security</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3: Vulnerability Assessment Tool -->
-                <div class="project-card" data-category="security"
-                     data-description="Comprehensive vulnerability assessment toolkit using industry-standard tools like OpenVas, Nmap, and Metasploit to identify and mitigate security risks in network infrastructure."
-                     data-technologies="Kali Linux, OpenVas, Nmap, Metasploit"
-                     data-github="#"
-                     data-demo="#">
-                    <div class="project-content">
-                        <h3>Vulnerability Assessment Toolkit</h3>
-                        <p>Comprehensive security assessment tool using OpenVas, Nmap, and Metasploit for identifying network vulnerabilities.</p>
-                        <div class="project-tags">
-                            <span class="tag">Kali Linux</span>
-                            <span class="tag">OpenVas</span>
-                            <span class="tag">Nmap</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 4: Neural Networks Research -->
-                <div class="project-card" data-category="ml"
-                     data-description="Research paper on Neural Networks presented and published at the National Conference, April 2024. Explored advanced neural network architectures and their applications in cybersecurity."
-                     data-technologies="Python, TensorFlow, Research"
-                     data-github="#"
-                     data-demo="#">
-                    <div class="project-content">
-                        <h3>Neural Networks Research</h3>
-                        <p>Published research paper on Neural Networks at National Conference, exploring applications in cybersecurity.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Neural Networks</span>
-                            <span class="tag">Research</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 5: IoT Security Project -->
-                <div class="project-card" data-category="security"
-                     data-description="Led a 10-member team achieving first place in highly competitive IoT workshop, demonstrating exceptional leadership, teamwork, and technical abilities in IoT security implementation."
-                     data-technologies="IoT, Security, Team Leadership"
-                     data-github="#"
-                     data-demo="#">
-                    <div class="project-content">
-                        <h3>IoT Security Workshop Winner</h3>
-                        <p>Led 10-member team to first place in competitive IoT workshop, demonstrating leadership and technical excellence.</p>
-                        <div class="project-tags">
-                            <span class="tag">IoT</span>
-                            <span class="tag">Security</span>
-                            <span class="tag">Leadership</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 6: Portfolio Website -->
-                <div class="project-card" data-category="web"
-                     data-description="Modern, responsive portfolio website built with HTML5, CSS3, and JavaScript featuring interactive elements, dark mode toggle, animated skill charts, and project filtering capabilities."
-                     data-technologies="HTML5, CSS3, JavaScript, Responsive Design"
-                     data-github="https://github.com/aryansaini24/aryansaini24.github.io"
-                     data-demo="https://aryansaini24.github.io">
-                    <div class="project-content">
-                        <h3>Interactive Portfolio Website</h3>
-                        <p>Modern portfolio with dark mode, animated charts, project filtering, and responsive design.</p>
-                        <div class="project-tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <p>Feel free to reach out for collaborations, opportunities, or just a friendly chat!</p>
-            <div class="contact-links">
-                <a href="mailto:aryansaini2403@gmail.com">📧 Email</a>
-                <a href="https://linkedin.com/in/aryan-saini" target="_blank">🔗 LinkedIn</a>
-                <a href="https://github.com/aryansaini24" target="_blank">👨‍💻 GitHub</a>
-                <a href="tel:+919306508561">📞 +91 9306508561</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Aryan Saini. All rights reserved.</p>
-            <p>Built with HTML, CSS, and JavaScript</p>
-        </div>
-    </footer>
-
-    <!-- Project Modal -->
-    <div class="modal">
-        <div class="modal-content">
-            <!-- Modal content will be dynamically inserted by JavaScript -->
-        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
-</body>
-</html>
+  <section id="about" class="about container">
+    <h2>About Me</h2>
+    <p>B.Tech in Computer Science (Vaish College of Engineering, Rohtak; CGPA 7.5, June 2025).</p>
+    <p>Targeting Cyber Security Engineer roles. Expert in Kali Linux, Metasploit, Nmap, Wireshark, Burp Suite, and OpenVas with a strong background in vulnerability assessment.</p>
+    <p>Demonstrated ability to manage projects from planning to deployment, always learning the latest security techniques and trends.</p>
+  </section>
+
+  <section id="skills" class="skills container">
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><h3>Cybersecurity Tools</h3><p>Kali Linux, Metasploit, Nmap</p><div class="skill-bar"><div class="skill-progress" style="--w:90%"></div></div></div>
+      <div class="skill-card"><h3>Network Analysis</h3><p>Wireshark, Burp Suite, OpenVas</p><div class="skill-bar"><div class="skill-progress" style="--w:85%"></div></div></div>
+      <div class="skill-card"><h3>Programming</h3><p>Python, Java, C, C++</p><div class="skill-bar"><div class="skill-progress" style="--w:80%"></div></div></div>
+      <div class="skill-card"><h3>Web Development</h3><p>HTML, CSS, JavaScript</p><div class="skill-bar"><div class="skill-progress" style="--w:75%"></div></div></div>
+      <div class="skill-card"><h3>Development Tools</h3><p>VS Code, PyCharm, Eclipse, Git</p><div class="skill-bar"><div class="skill-progress" style="--w:85%"></div></div></div>
+      <div class="skill-card"><h3>Cloud & Networking</h3><p>AWS, Linux, CCNA, Gen AI</p><div class="skill-bar"><div class="skill-progress" style="--w:70%"></div></div></div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects container">
+    <h2>Featured Projects</h2>
+    <div class="filters">
+      <button class="filter-btn" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="security">Security</button>
+      <button class="filter-btn" data-cat="ml">Machine Learning</button>
+      <button class="filter-btn" data-cat="web">Web</button>
+    </div>
+    <div class="grid" id="projectGrid">
+      <article class="card" data-cat="ml">
+        <img alt="AI anomaly detection" src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1000&q=80&auto=format&fit=crop" />
+        <h3>Anomaly Detection Tools</h3>
+        <p>ML-based system to identify fraudulent transactions in real-time using advanced algorithms.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">AWS</span></div>
+      </article>
+      <article class="card" data-cat="security">
+        <img alt="Web application firewall" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1000&q=80&auto=format&fit=crop" />
+        <h3>Web Application Firewall</h3>
+        <p>High-performance WAF with ML-based threat detection blocking SQLi, brute force, XSS.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">ML</span><span class="tag">Security</span></div>
+      </article>
+      <article class="card" data-cat="security">
+        <img alt="Vulnerability assessment" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=1000&q=80&auto=format&fit=crop" />
+        <h3>Vulnerability Assessment Toolkit</h3>
+        <p>Comprehensive assessments using OpenVas, Nmap, and Metasploit for networks.</p>
+        <div class="tags"><span class="tag">Kali</span><span class="tag">OpenVas</span><span class="tag">Nmap</span></div>
+      </article>
+      <article class="card" data-cat="ml">
+        <img alt="Neural networks research" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1000&q=80&auto=format&fit=crop" />
+        <h3>Neural Networks Research</h3>
+        <p>Exploring advanced neural nets and their cybersecurity applications.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">Research</span></div>
+      </article>
+      <article class="card" data-cat="security">
+        <img alt="IoT security" src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1000&q=80&auto=format&fit=crop" />
+        <h3>IoT Security Workshop Winner</h3>
+        <p>Led a 10-member team to first place in an IoT security challenge.</p>
+        <div class="tags"><span class="tag">IoT</span><span class="tag">Security</span><span class="tag">Leadership</span></div>
+      </article>
+      <article class="card" data-cat="web">
+        <img alt="Portfolio website" src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1000&q=80&auto=format&fit=crop" />
+        <h3>Interactive Portfolio Website</h3>
+        <p>Modern portfolio with dark mode, animated charts, filters, and responsive design.</p>
+        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" class="contact container">
+    <h2>Get In Touch</h2>
+    <p>Feel free to reach out for collaborations, opportunities, or just a friendly chat!</p>
+    <div class="contact-links">
+      <a href="mailto:aryansaini2403@gmail.com">📧 Email</a>
+      <a href="https://www.linkedin.com/in/aryan-saini-66266b27a/" target="_blank">🔗 LinkedIn</a>
+      <a href="https://github.com/aryansaini24" target="_blank">👨‍💻 GitHub</a>
+      <a href="tel:+919306508561">📞 +91 9306508561</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Aryan Saini. All rights reserved.</p>
+      <p>Built with HTML, CSS, and JavaScript</p>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    let dark = true;
+    toggle?.addEvent
