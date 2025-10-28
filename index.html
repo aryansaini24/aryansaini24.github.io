@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,50 +9,95 @@
       --accent:#00d4ff; --accent2:#00ff88; --accent3:#8338ec; --accent4:#ff006e;
     }
     *{box-sizing:border-box}
+    html:focus-within{scroll-behavior:smooth}
     body{margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
       background: radial-gradient(1200px 800px at 120% -10%, rgba(0,255,136,.10), transparent 60%),
                   radial-gradient(900px 600px at -20% 120%, rgba(0,212,255,.12), transparent 60%),
                   linear-gradient(180deg, var(--bg), var(--bg2));}
-    .bg-anim{position:fixed; inset:0; z-index:-1; overflow:hidden}
+    a{color:inherit}
+    /* Accessibility */
+    .skip-link{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+    .skip-link:focus{left:16px; top:16px; width:auto; height:auto; padding:10px 14px; border-radius:10px; background:#081220; color:#fff; outline:3px solid var(--accent2)}
+
+    .bg-anim{position:fixed; inset:0; z-index:-2; overflow:hidden}
     .orb{position:absolute; width:520px; height:520px; border-radius:50%; filter:blur(40px); opacity:.30;
       background:radial-gradient(circle at 30% 30%, var(--accent2), transparent 60%),
                  radial-gradient(circle at 70% 70%, var(--accent), transparent 60%);
       animation: float 18s ease-in-out infinite alternate}
     .orb.two{right:-140px; bottom:-160px; background:radial-gradient(circle at 30% 30%, var(--accent3), transparent 60%), radial-gradient(circle at 70% 70%, var(--accent4), transparent 60%); animation-duration:22s}
+
+    /* Neon grid overlay */
+    .neon-grid{position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.12; mix-blend-mode:screen;
+      background-image: radial-gradient(circle at 50% 50%, rgba(0,212,255,.35), transparent 40%),
+                        linear-gradient(90deg, rgba(0,255,136,.25) 1px, transparent 1px),
+                        linear-gradient(0deg, rgba(0,212,255,.25) 1px, transparent 1px);
+      background-size: 100% 100%, 48px 48px, 48px 48px;
+      animation: pulse 5s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:.08; filter:hue-rotate(0deg)} 50%{opacity:.18; filter:hue-rotate(25deg)} }
+
     @keyframes float { from{ transform:translateY(-10px)} to{ transform:translateY(10px)} }
-    header{position:sticky; top:0; background:rgba(8,12,20,.65); backdrop-filter: blur(12px); border-bottom:1px solid rgba(0,255,136,.15)}
+    header{position:sticky; top:0; background:rgba(8,12,20,.75); backdrop-filter: blur(12px); border-bottom:1px solid rgba(0,255,136,.15)}
     nav{max-width:1100px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px}
     .nav-links{display:flex; gap:16px; list-style:none; margin:0; padding:0}
-    .nav-links a{color:var(--text); padding:8px 12px; border-radius:10px; text-decoration:none}
-    .nav-links a:hover{background:linear-gradient(135deg, rgba(0,212,255,.15), rgba(0,255,136,.15))}
+    .nav-links a{color:var(--text); padding:8px 12px; border-radius:10px; text-decoration:none; transition:transform .2s ease, background .2s ease, box-shadow .2s ease}
+    .nav-links a:hover,.nav-links a:focus{background:linear-gradient(135deg, rgba(0,212,255,.15), rgba(0,255,136,.15)); transform:translateY(-1px); box-shadow:0 6px 20px rgba(0,212,255,.15)}
+
     .container{max-width:1100px; margin:auto; padding:0 20px}
-    .hero{min-height:64vh; display:grid; place-items:center; padding:70px 0}
-    .hero h1{font-size:2.4rem; margin:.2rem 0}
+    .hero{min-height:64vh; display:grid; place-items:center; padding:70px 0; position:relative}
+    .hero h1{font-size:2.2rem; line-height:1.2; margin:.6rem 0}
     .subtitle{color:var(--muted)}
-    .btns{display:flex; gap:12px; margin-top:18px}
-    .btn{padding:10px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12); text-decoration:none; font-weight:600; color:var(--text)}
+    .btns{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap}
+    .btn{padding:10px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12); text-decoration:none; font-weight:600; color:var(--text); transition:transform .18s ease, box-shadow .25s ease, filter .25s ease}
+    .btn:hover,.btn:focus{transform:translateY(-1px); box-shadow:0 10px 30px rgba(0,212,255,.15), 0 0 0 2px rgba(0,255,136,.25) inset}
     .primary{background:linear-gradient(135deg, var(--accent), var(--accent2)); color:#06111e}
-    section{padding:50px 0}
+
+    section{padding:56px 0}
     h2{margin:0 0 16px; font-size:1.8rem; background:linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
-    .card{background:linear-gradient(180deg, rgba(0,255,136,.10), rgba(0,212,255,.10)); border:1px solid rgba(0,255,136,.18); border-radius:16px; padding:18px}
+    .card{background:linear-gradient(180deg, rgba(0,255,136,.10), rgba(0,212,255,.10)); border:1px solid rgba(0,255,136,.18); border-radius:16px; padding:18px; transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease}
+    .card:hover,.card:focus-within{transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,212,255,.14), 0 0 0 1px rgba(0,255,136,.25) inset; border-color:rgba(0,255,136,.35)}
+
     .grid{display:grid; gap:16px}
     .grid.skills{grid-template-columns:repeat(auto-fit, minmax(240px, 1fr))}
-    .skill{margin:8px 0}
-    .bar{height:10px; border-radius:999px; background:rgba(255,255,255,.12); overflow:hidden}
-    .fill{height:100%; background:linear-gradient(90deg, var(--accent), var(--accent2))}
+
+    .skill{margin:10px 0}
+    .bar{height:12px; border-radius:999px; background:rgba(255,255,255,.12); overflow:hidden; position:relative}
+    .fill{height:100%; background:linear-gradient(90deg, var(--accent), var(--accent2)); transition:width .6s ease, filter .25s ease}
+    .bar:hover .fill,.bar:focus-within .fill{filter:drop-shadow(0 0 6px rgba(0,212,255,.55))}
+
     .projects{grid-template-columns:repeat(auto-fit, minmax(260px, 1fr))}
+    .project-badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+    .badge{display:inline-flex; align-items:center; gap:6px; font-size:.85rem; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12)}
+
     footer{padding:40px 0; text-align:center; color:var(--muted)}
+
+    /* Reveal animation */
+    .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    /* Contact form */
+    form.contact{display:grid; gap:12px; margin-top:10px}
+    .field{display:grid; gap:6px}
+    .field label{font-size:.9rem; color:var(--muted)}
+    .field input,.field textarea{background:#0a1222; color:var(--text); border:1px solid rgba(255,255,255,.14); border-radius:12px; padding:10px 12px}
+    .field input:focus,.field textarea:focus{outline:2px solid rgba(0,255,136,.4); border-color:rgba(0,255,136,.5)}
+
+    /* Focus visibility */
+    :focus{outline-offset:3px}
   </style>
 </head>
 <body>
-  <div class="bg-anim">
+  <a class="skip-link" href="#start-of-content">Skip to main content</a>
+  <div class="bg-anim" aria-hidden="true">
     <div class="orb" style="left:-160px; top:-120px"></div>
     <div class="orb two"></div>
   </div>
-  <header>
-    <nav class="container">
+  <div class="neon-grid" aria-hidden="true"></div>
+
+  <header role="banner">
+    <nav class="container" aria-label="Primary">
       <strong>Aryan Saini</strong>
-      <ul class="nav-links">
+      <ul class="nav-links" role="list">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#experience">Experience</a></li>
@@ -63,65 +107,69 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="container">
+  <section class="hero" id="start-of-content" aria-label="Hero">
+    <div class="container reveal">
       <span class="subtitle">Cybersecurity Engineer</span>
       <h1>Defending systems, automating security, and leading with data-driven defenses.</h1>
       <div class="btns">
-        <a class="btn primary" href="#projects">View Projects</a>
-        <a class="btn" href="#contact">Contact</a>
+        <a class="btn primary" href="#projects" aria-label="View projects section">View Projects</a>
+        <a class="btn" href="#contact" aria-label="Jump to contact">Contact</a>
+        <a class="btn" href="resume.pdf" download aria-label="Download resume PDF">⬇️ Download Resume</a>
       </div>
     </div>
   </section>
 
-  <main class="container">
-    <section id="about">
+  <main class="container" role="main">
+    <section id="about" aria-label="About me" class="reveal">
       <h2>About Me</h2>
       <div class="card">
         <p>Professional Cybersecurity Engineer with a focus on defending digital assets, automating security workflows, and staying at the forefront of cyber defense. Skilled in Python, cloud security, penetration testing, and incident response. Pursuing CISSP, CEH, Security+ certifications.</p>
-        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/aryan-saini-66266b27a/" target="_blank">linkedin.com/in/aryan-saini-66266b27a/</a><br/>
-           <strong>GitHub:</strong> <a href="https://github.com/aryansaini24" target="_blank">github.com/aryansaini24</a><br/>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/aryan-saini-66266b27a/" target="_blank" rel="noopener">linkedin.com/in/aryan-saini-66266b27a/</a><br/>
+           <strong>GitHub:</strong> <a href="https://github.com/aryansaini24" target="_blank" rel="noopener">github.com/aryansaini24</a><br/>
            <strong>Contact:</strong> <a href="mailto:aryansaini2403@gmail.com">aryansaini2403@gmail.com</a></p>
+        <p>
+          <a class="btn" href="resume.pdf" download aria-label="Download resume PDF from about">⬇️ Download Resume</a>
+        </p>
       </div>
     </section>
 
-    <section id="skills">
-      <h2>Skills & Technologies</h2>
+    <section id="skills" aria-label="Skills and technologies" class="reveal">
+      <h2>Skills &amp; Technologies</h2>
       <div class="grid skills">
-        <div class="card">
+        <div class="card" tabindex="0">
           <strong>Python (Advanced)</strong>
-          <div class="skill"><div class="bar"><div class="fill" style="width: 90%"></div></div></div>
+          <div class="skill"><div class="bar" tabindex="0"><div class="fill" style="width: 90%"></div></div></div>
           <small>Automation, data pipelines, tooling</small>
         </div>
-        <div class="card">
+        <div class="card" tabindex="0">
           <strong>Bash, JavaScript, C</strong>
-          <div class="skill"><div class="bar"><div class="fill" style="width: 75%"></div></div></div>
+          <div class="skill"><div class="bar" tabindex="0"><div class="fill" style="width: 75%"></div></div></div>
           <small>Scripting, tooling, web</small>
         </div>
-        <div class="card">
+        <div class="card" tabindex="0">
           <strong>Nmap, Wireshark, Burp Suite, Metasploit</strong>
-          <div class="skill"><div class="bar"><div class="fill" style="width: 85%"></div></div></div>
+          <div class="skill"><div class="bar" tabindex="0"><div class="fill" style="width: 85%"></div></div></div>
           <small>Recon, testing, exploitation</small>
         </div>
-        <div class="card">
+        <div class="card" tabindex="0">
           <strong>Splunk, ELK Stack, AWS, Azure</strong>
-          <div class="skill"><div class="bar"><div class="fill" style="width: 80%"></div></div></div>
+          <div class="skill"><div class="bar" tabindex="0"><div class="fill" style="width: 80%"></div></div></div>
           <small>SIEM, search, cloud security</small>
         </div>
-        <div class="card">
+        <div class="card" tabindex="0">
           <strong>Linux, Windows Server</strong>
-          <div class="skill"><div class="bar"><div class="fill" style="width: 78%"></div></div></div>
+          <div class="skill"><div class="bar" tabindex="0"><div class="fill" style="width: 78%"></div></div></div>
           <small>Hardening, administration</small>
         </div>
-        <div class="card">
+        <div class="card" tabindex="0">
           <strong>Penetration Testing, Incident Response, SIEM automation</strong>
-          <div class="skill"><div class="bar"><div class="fill" style="width: 82%"></div></div></div>
+          <div class="skill"><div class="bar" tabindex="0"><div class="fill" style="width: 82%"></div></div></div>
           <small>Operations and playbooks</small>
         </div>
       </div>
     </section>
 
-    <section id="experience">
+    <section id="experience" aria-label="Experience" class="reveal">
       <h2>Experience</h2>
       <div class="card">
         <p><strong>Cybersecurity Engineer</strong>, 2024–Present</p>
@@ -129,41 +177,38 @@
       </div>
     </section>
 
-    <section id="projects">
+    <section id="projects" aria-label="Projects" class="reveal">
       <h2>Projects</h2>
       <div class="grid projects">
-        <div class="card">
-          <strong>AI-based Phishing URL Detector (Python + ML)</strong>
+        <div class="card" tabindex="0">
+          <strong>🛡️ AI-based Phishing URL Detector (Python + ML)</strong>
           <p>Feature engineering on URLs + ML pipeline to detect phishing with high precision.</p>
+          <div class="project-badges" aria-label="Technologies used">
+            <span class="badge">🤖 ML</span>
+            <span class="badge">🐍 Python</span>
+            <span class="badge">📊 pandas</span>
+            <span class="badge">🔗 URL Features</span>
+          </div>
         </div>
-        <div class="card">
-          <strong>Automated Vulnerability Scanner (Python)</strong>
+        <div class="card" tabindex="0">
+          <strong>🔍 Automated Vulnerability Scanner (Python)</strong>
           <p>Orchestrates Nmap/Burp/Metasploit modules and aggregates results for reporting.</p>
+          <div class="project-badges" aria-label="Technologies used">
+            <span class="badge">🕷️ Nmap</span>
+            <span class="badge">🧪 Burp</span>
+            <span class="badge">🛠️ Metasploit</span>
+            <span class="badge">🐍 Python</span>
+          </div>
         </div>
-        <div class="card">
-          <strong>SIEM Log Analysis Automation</strong>
+        <div class="card" tabindex="0">
+          <strong>📊 SIEM Log Analysis Automation</strong>
           <p>Automates ingestion, triage, and correlation in Splunk/ELK with enrichment.</p>
+          <div class="project-badges" aria-label="Technologies used">
+            <span class="badge">🧠 Correlation</span>
+            <span class="badge">🧱 ELK</span>
+            <span class="badge">🌀 Splunk</span>
+            <span class="badge">☁️ Cloud</span>
+          </div>
         </div>
-        <div class="card">
-          <strong>Secure Web App (patched vulnerabilities)</strong>
-          <p>Hardened app via secure headers, input validation, and auth improvements.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="card">
-        <p>Email: <a href="mailto:aryansaini2403@gmail.com">aryansaini2403@gmail.com</a><br/>
-        LinkedIn: <a href="https://www.linkedin.com/in/aryan-saini-66266b27a/" target="_blank">linkedin.com/in/aryan-saini-66266b27a/</a><br/>
-        GitHub: <a href="https://github.com/aryansaini24" target="_blank">github.com/aryansaini24</a></p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">© <span id="y"></span> Aryan Saini</div>
-  </footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
-</body>
-</html>
+        <div class="card" tabindex="0">
+          <strong>🔐 Secure Web App (patched vulnerabilities)</strong
