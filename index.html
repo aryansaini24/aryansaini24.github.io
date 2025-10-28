@@ -1,155 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aryan Saini - Cybersecurity x Machine Learning</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aryan Saini | Cybersecurity Engineer</title>
   <style>
     :root{
-      --bg:#0a0b10;
-      --bg2:#0c1120;
-      --card:#0f1726;
-      --text:#e8f1ff;
-      --muted:#9db3d9;
-      --accent:#00d4ff;
-      --accent-2:#00ff88;
-      --accent-3:#ff006e;
-      --accent-4:#8338ec;
-      --hot:#a77bff;
-      --glow: 0 12px 36px rgba(0,212,255,.35), inset 0 0 40px rgba(0,255,136,.12);
-      --glow-hover: 0 20px 60px rgba(0,212,255,.45), inset 0 0 60px rgba(0,255,136,.18);
+      --bg:#0a0b10; --bg2:#0c1120; --card:#0f1726; --text:#e8f1ff; --muted:#9db3d9;
+      --accent:#00d4ff; --accent2:#00ff88; --accent3:#8338ec; --accent4:#ff006e;
     }
     *{box-sizing:border-box}
-    html,body{margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text); background: radial-gradient(1200px 800px at 120% -10%, rgba(0,255,136,.12), transparent 60%), radial-gradient(900px 600px at -20% 120%, rgba(0,212,255,.15), transparent 60%), linear-gradient(180deg, var(--bg), var(--bg2));}
-    /* animated 3D-ish background */
-    .bg-anim{position:fixed; inset:0; z-index:-1; perspective:800px; overflow:hidden}
-    .orb{position:absolute; width:520px; height:520px; border-radius:50%; filter:blur(40px); opacity:.3; transform-style:preserve-3d; animation: float 18s ease-in-out infinite alternate}
-    .orb.one{left:-160px; top:-120px; background:radial-gradient(circle at 30% 30%, #00ff88, transparent 60%), radial-gradient(circle at 70% 70%, #00d4ff, transparent 60%)}
-    .orb.two{right:-140px; bottom:-160px; background:radial-gradient(circle at 30% 30%, #8338ec, transparent 60%), radial-gradient(circle at 70% 70%, #ff006e, transparent 60%); animation-duration:22s}
-    @keyframes float { from{ transform:translateZ(-60px) rotateX(8deg) translateY(-10px)} to{ transform:translateZ(60px) rotateX(-6deg) translateY(10px)} }
-    header{position:sticky; top:0; backdrop-filter: blur(12px); background:rgba(8,12,20,.65); border-bottom:1px solid rgba(0,255,136,.15); z-index:100}
+    body{margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
+      background: radial-gradient(1200px 800px at 120% -10%, rgba(0,255,136,.10), transparent 60%),
+                  radial-gradient(900px 600px at -20% 120%, rgba(0,212,255,.12), transparent 60%),
+                  linear-gradient(180deg, var(--bg), var(--bg2));}
+    .bg-anim{position:fixed; inset:0; z-index:-1; overflow:hidden}
+    .orb{position:absolute; width:520px; height:520px; border-radius:50%; filter:blur(40px); opacity:.30;
+      background:radial-gradient(circle at 30% 30%, var(--accent2), transparent 60%),
+                 radial-gradient(circle at 70% 70%, var(--accent), transparent 60%);
+      animation: float 18s ease-in-out infinite alternate}
+    .orb.two{right:-140px; bottom:-160px; background:radial-gradient(circle at 30% 30%, var(--accent3), transparent 60%), radial-gradient(circle at 70% 70%, var(--accent4), transparent 60%); animation-duration:22s}
+    @keyframes float { from{ transform:translateY(-10px)} to{ transform:translateY(10px)} }
+    header{position:sticky; top:0; background:rgba(8,12,20,.65); backdrop-filter: blur(12px); border-bottom:1px solid rgba(0,255,136,.15)}
     nav{max-width:1100px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px}
     .nav-links{display:flex; gap:16px; list-style:none; margin:0; padding:0}
-    .nav-links a{color:var(--text); padding:8px 12px; border-radius:10px; transition:all 0.3s ease}
-    .nav-links a:hover{background:linear-gradient(135deg, rgba(0,212,255,.15), rgba(0,255,136,.15)); transform:translateY(-2px)}
-    .container{max-width:1100px; margin:auto}
-    .hero{min-height:72vh; display:grid; place-items:center; padding:80px 20px}
-    .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:34px; align-items:center}
-    .btn{padding:12px 20px; border-radius:12px; border:1px solid rgba(255,255,255,.12); transition:all 0.4s ease; text-decoration:none; display:inline-block; font-weight:600}
-    .btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#06111e; box-shadow: var(--glow); animation: pulse-glow 3s ease-in-out infinite}
-    .btn-primary:hover{box-shadow: var(--glow-hover); transform:translateY(-4px) scale(1.05)}
-    .btn-secondary{background:rgba(255,255,255,.06); color:var(--text)}
-    .btn-secondary:hover{background:linear-gradient(135deg, rgba(131,56,236,.2), rgba(255,0,110,.2)); transform:translateY(-2px)}
-    @keyframes pulse-glow { 0%, 100% { box-shadow: var(--glow); } 50% { box-shadow: var(--glow-hover); } }
-    .profile-card{background:linear-gradient(180deg, rgba(0,255,136,.12), rgba(0,212,255,.12)); border:1px solid rgba(0,255,136,.25); border-radius:18px; padding:18px; box-shadow: var(--glow)}
-    .profile-3d{position:relative; aspect-ratio:1; border-radius:14px; overflow:hidden}
-    .profile-3d img{width:100%; height:100%; object-fit:cover}
-    .float-badge{position:absolute; top:14px; right:14px; background:rgba(0,0,0,.55); backdrop-filter:blur(8px); border:1px solid rgba(0,255,136,.3); padding:6px 10px; border-radius:999px; animation: badge-float 4s ease-in-out infinite}
-    @keyframes badge-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-    section{padding:56px 20px}
-    section h2{margin:0 0 24px; font-size:2.2em; background:linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text}
-    .projects-section{background:linear-gradient(180deg, rgba(0,212,255,.05), rgba(0,255,136,.05)); border-top:2px solid rgba(0,255,136,.2); border-bottom:2px solid rgba(0,212,255,.2); margin:40px 0; padding:70px 20px}
-    .projects-header{text-align:center; margin-bottom:50px}
-    .projects-header h2{font-size:3em; margin-bottom:16px}
-    .projects-header p{color:var(--muted); font-size:1.2em; max-width:700px; margin:0 auto}
-    .grid{display:grid; gap:24px; grid-template-columns:repeat(3, 1fr)}
-    .card{background:linear-gradient(180deg, rgba(0,255,136,.08), rgba(0,212,255,.08)); border:1px solid rgba(0,255,136,.2); border-radius:16px; overflow:hidden; box-shadow: var(--glow); transition:all 0.4s ease; cursor:pointer}
-    .card:hover{transform:translateY(-12px); box-shadow: var(--glow-hover); border-color:rgba(0,255,136,.5)}
-    .card:hover img{transform:scale(1.1)}
-    .card img{width:100%; height:200px; object-fit:cover; transition:transform 0.4s ease}
-    .card .body{padding:18px}
-    .card h3{margin:0 0 12px; font-size:1.3em; background:linear-gradient(135deg, var(--accent-2), var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text}
-    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
-    .tag{font-size:12px; padding:6px 12px; border-radius:999px; color:#051020; background:linear-gradient(135deg, var(--accent), var(--accent-2)); font-weight:600; transition:all 0.3s ease}
-    .tag:hover{transform:scale(1.1); box-shadow:0 4px 12px rgba(0,255,136,.4)}
-    @media (max-width:900px){ .hero-grid{grid-template-columns:1fr} .grid{grid-template-columns:1fr} }
+    .nav-links a{color:var(--text); padding:8px 12px; border-radius:10px; text-decoration:none}
+    .nav-links a:hover{background:linear-gradient(135deg, rgba(0,212,255,.15), rgba(0,255,136,.15))}
+    .container{max-width:1100px; margin:auto; padding:0 20px}
+    .hero{min-height:64vh; display:grid; place-items:center; padding:70px 0}
+    .hero h1{font-size:2.4rem; margin:.2rem 0}
+    .subtitle{color:var(--muted)}
+    .btns{display:flex; gap:12px; margin-top:18px}
+    .btn{padding:10px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12); text-decoration:none; font-weight:600; color:var(--text)}
+    .primary{background:linear-gradient(135deg, var(--accent), var(--accent2)); color:#06111e}
+    section{padding:50px 0}
+    h2{margin:0 0 16px; font-size:1.8rem; background:linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
+    .card{background:linear-gradient(180deg, rgba(0,255,136,.10), rgba(0,212,255,.10)); border:1px solid rgba(0,255,136,.18); border-radius:16px; padding:18px}
+    .grid{display:grid; gap:16px}
+    .grid.skills{grid-template-columns:repeat(auto-fit, minmax(240px, 1fr))}
+    .skill{margin:8px 0}
+    .bar{height:10px; border-radius:999px; background:rgba(255,255,255,.12); overflow:hidden}
+    .fill{height:100%; background:linear-gradient(90deg, var(--accent), var(--accent2))}
+    .projects{grid-template-columns:repeat(auto-fit, minmax(260px, 1fr))}
+    footer{padding:40px 0; text-align:center; color:var(--muted)}
   </style>
 </head>
 <body>
-  <div class="bg-anim" aria-hidden="true">
-    <div class="orb one"></div>
+  <div class="bg-anim">
+    <div class="orb" style="left:-160px; top:-120px"></div>
     <div class="orb two"></div>
   </div>
   <header>
-    <nav>
+    <nav class="container">
       <strong>Aryan Saini</strong>
       <ul class="nav-links">
-        <li><a href="#profile">Profile</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#education">Education</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
+
   <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <h1>Cybersecurity Engineer leveraging Machine Learning</h1>
-        <p class="lead">I secure systems end‑to‑end, build detection pipelines, and automate defenses with data‑driven models.</p>
-        <div class="hero-buttons">
-          <a class="btn btn-primary" href="#projects">View Projects</a>
-          <a class="btn btn-secondary" href="#contact">Get in touch</a>
-        </div>
-      </div>
-      <div class="profile-card">
-        <div class="profile-3d">
-          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&auto=format&fit=crop&w=800" alt="AI-stylized cybersecurity portrait" />
-          <span class="float-badge">Security + ML</span>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="container" id="profile">
-    <h2>Profile Summary</h2>
-    <p>
-      Cybersecurity engineer passionate about building resilient, measurable defenses. I design threat‑informed controls, automate detection with ML, and turn telemetry into decisions. Strengths include network security, vulnerability assessment, adversary emulation, feature engineering, and MLOps for security data. I value clear documentation, reproducible pipelines, and collaborative incident response.
-    </p>
-  </section>
-  <section class="projects-section" id="projects">
     <div class="container">
-      <div class="projects-header">
-        <h2>Projects</h2>
-        <p>Explore my cybersecurity and machine learning initiatives that showcase innovative solutions and cutting-edge techniques</p>
-      </div>
-      <div class="grid">
-        <article class="card" data-cat="security">
-          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&auto=format&fit=crop&w=1200" alt="Vulnerability assessment dashboard" />
-          <div class="body">
-            <h3>Vulnerability Assessment Toolkit</h3>
-            <p>OpenVAS, Nmap, and Metasploit automation for repeatable network assessments and reporting.</p>
-            <div class="tags"><span class="tag">Kali</span><span class="tag">OpenVAS</span><span class="tag">Nmap</span></div>
-          </div>
-        </article>
-        <article class="card" data-cat="ml">
-          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&auto=format&fit=crop&w=1200" alt="AI neural network visualization" />
-          <div class="body">
-            <h3>Malware Classification with Deep Learning</h3>
-            <p>Built CNN and gradient boosting baselines to classify malware families from static features.</p>
-            <div class="tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">Security ML</span></div>
-          </div>
-        </article>
-        <article class="card" data-cat="security">
-          <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&auto=format&fit=crop&w=1200" alt="IoT network security monitoring" />
-          <div class="body">
-            <h3>IoT Threat Hunting Lab</h3>
-            <p>Deployed lab with MQTT honeypots and alerting to study lateral movement across devices.</p>
-            <div class="tags"><span class="tag">IoT</span><span class="tag">Detection</span><span class="tag">Honeypot</span></div>
-          </div>
-        </article>
+      <span class="subtitle">Cybersecurity Engineer</span>
+      <h1>Defending systems, automating security, and leading with data-driven defenses.</h1>
+      <div class="btns">
+        <a class="btn primary" href="#projects">View Projects</a>
+        <a class="btn" href="#contact">Contact</a>
       </div>
     </div>
   </section>
-  <section class="container" id="education">
-    <h2>Education</h2>
-    <ul>
-      <li>Bachelor of Technology in Computer Science and Engineering</li>
-       
-      <li>Relevant coursework: Network Security, Cybersecurity, Machine Learning, Cryptography, Threat Modeling, Data Mining, Deep Learning</li>
-    </ul>
-  </section>
-  <section class="container" id="contact">
-    <h2>Contact</h2>
-    <p>Email: aryansaini2403@gmail.com • GitHub: github.com/aryansaini24 • Location: India</p>
-  </section>
+
+  <main class="container">
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="card">
+        <p>Professional Cybersecurity Engineer with a focus on defending digital assets, automating security workflows, and staying at the forefront of cyber defense. Skilled in Python, cloud security, penetration testing, and incident response. Pursuing CISSP, CEH, Security+ certifications.</p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/aryan-saini-66266b27a/" target="_blank">linkedin.com/in/aryan-saini-66266b27a/</a><br/>
+           <strong>GitHub:</strong> <a href="https://github.com/aryansaini24" target="_blank">github.com/aryansaini24</a><br/>
+           <strong>Contact:</strong> <a href="mailto:aryansaini2403@gmail.com">aryansaini2403@gmail.com</a></p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills & Technologies</h2>
+      <div class="grid skills">
+        <div class="card">
+          <strong>Python (Advanced)</strong>
+          <div class="skill"><div class="bar"><div class="fill" style="width: 90%"></div></div></div>
+          <small>Automation, data pipelines, tooling</small>
+        </div>
+        <div class="card">
+          <strong>Bash, JavaScript, C</strong>
+          <div class="skill"><div class="bar"><div class="fill" style="width: 75%"></div></div></div>
+          <small>Scripting, tooling, web</small>
+        </div>
+        <div class="card">
+          <strong>Nmap, Wireshark, Burp Suite, Metasploit</strong>
+          <div class="skill"><div class="bar"><div class="fill" style="width: 85%"></div></div></div>
+          <small>Recon, testing, exploitation</small>
+        </div>
+        <div class="card">
+          <strong>Splunk, ELK Stack, AWS, Azure</strong>
+          <div class="skill"><div class="bar"><div class="fill" style="width: 80%"></div></div></div>
+          <small>SIEM, search, cloud security</small>
+        </div>
+        <div class="card">
+          <strong>Linux, Windows Server</strong>
+          <div class="skill"><div class="bar"><div class="fill" style="width: 78%"></div></div></div>
+          <small>Hardening, administration</small>
+        </div>
+        <div class="card">
+          <strong>Penetration Testing, Incident Response, SIEM automation</strong>
+          <div class="skill"><div class="bar"><div class="fill" style="width: 82%"></div></div></div>
+          <small>Operations and playbooks</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="card">
+        <p><strong>Cybersecurity Engineer</strong>, 2024–Present</p>
+        <p><strong>Intern: Security Operations</strong>, 2023</p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="grid projects">
+        <div class="card">
+          <strong>AI-based Phishing URL Detector (Python + ML)</strong>
+          <p>Feature engineering on URLs + ML pipeline to detect phishing with high precision.</p>
+        </div>
+        <div class="card">
+          <strong>Automated Vulnerability Scanner (Python)</strong>
+          <p>Orchestrates Nmap/Burp/Metasploit modules and aggregates results for reporting.</p>
+        </div>
+        <div class="card">
+          <strong>SIEM Log Analysis Automation</strong>
+          <p>Automates ingestion, triage, and correlation in Splunk/ELK with enrichment.</p>
+        </div>
+        <div class="card">
+          <strong>Secure Web App (patched vulnerabilities)</strong>
+          <p>Hardened app via secure headers, input validation, and auth improvements.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <p>Email: <a href="mailto:aryansaini2403@gmail.com">aryansaini2403@gmail.com</a><br/>
+        LinkedIn: <a href="https://www.linkedin.com/in/aryan-saini-66266b27a/" target="_blank">linkedin.com/in/aryan-saini-66266b27a/</a><br/>
+        GitHub: <a href="https://github.com/aryansaini24" target="_blank">github.com/aryansaini24</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="y"></span> Aryan Saini</div>
+  </footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
